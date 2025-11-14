@@ -23,11 +23,52 @@
             Grid.Row="0"
             MouseDown="HeaderBar_MouseDown" Margin="-6,-11,-6,553" Grid.ColumnSpan="3"/>
 
+            <StackPanel Grid.ColumnSpan="3"
+            Orientation="Vertical"
+            Margin="10,36,10,0"
+            VerticalAlignment="Top">
+
+                <TextBlock Text="Crosshair Size" Foreground="DarkOrange"/>
+                <Slider x:Name="SizeSlider"
+            Minimum="0"
+            Maximum="200"
+            Value="60"
+            ValueChanged="CrosshairSettingsChanged"/>
+
+                <TextBlock Text="Thickness" Foreground="DarkOrange" Margin="0,10,0,0"/>
+                <Slider x:Name="ThicknessSlider" Background="DarkOrange"
+            Minimum="1"
+            Maximum="30"
+            Value="2"
+            ValueChanged="CrosshairSettingsChanged"/>
+                <TextBlock Text="Gap" Foreground="DarkOrange" Margin="0,10,0,0"/>
+
+                <Slider x:Name="GapSlider"
+        Minimum="0"
+        Maximum="40"
+        Value="5"
+        ValueChanged="CrosshairSettingsChanged"/>
+
+                <TextBlock Text="Color" Foreground="DarkOrange" Margin="0,10,0,0"/>
+                <ComboBox x:Name="ColorCombo" Foreground="DarkOrange"
+              Width="120"
+              SelectionChanged="CrosshairSettingsChanged">
+                    <ComboBoxItem Content="Red"   Tag="Red"   IsSelected="True"/>
+                    <ComboBoxItem Content="Green" Tag="Lime"/>
+                    <ComboBoxItem Content="Cyan"  Tag="Cyan"/>
+                    <ComboBoxItem Content="Black"  Tag="Black"/>
+                    <ComboBoxItem Content="Purple"  Tag="Purple"/>
+                    <ComboBoxItem Content="Yellow"  Tag="Yellow"/>
+                    <ComboBoxItem Content="Pink"  Tag="Pink"/>
+                </ComboBox>
+
+            </StackPanel>
+
             <Button x:Name="BtnClose" Margin="61,-6,0,558" Grid.Column="2" Click="BtnClose_Click" Background="DarkOrange" Content="X"/>
 
             <Button x:Name="BtnMinimise" Margin="20,-6,41,558" Grid.Column="2" Click="BtnMinimise_Click" Background="DarkOrange" FontSize="20" Content="-"/>
 
-            <Button x:Name="BtnShowoverlay" Content="Toggle crosshair" Grid.Column="1" Margin="89,230,89,274" Click="ShowOverlay_Click"/>
+            <Button x:Name="BtnShowoverlay" Content="Toggle crosshair" Margin="12,500,277,10" Click="ShowOverlay_Click" Grid.ColumnSpan="2" Foreground="DarkOrange" Background="#3A3A3A"/>
 
 
             <TextBlock Text="Crosshair Duck"

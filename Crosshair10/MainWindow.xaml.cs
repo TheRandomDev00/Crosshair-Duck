@@ -24,6 +24,9 @@ namespace Crosshair10
             InitializeComponent();
 
         }
+        
+
+
         private void HeaderBar_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -33,7 +36,7 @@ namespace Crosshair10
         // ⬇️ Add this method BELOW the constructor
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();  // closes the window
+            Application.Current.Shutdown();  // Fully closes the window
         }
 
         private void BtnMinimise_Click(object sender, RoutedEventArgs e)
@@ -43,6 +46,32 @@ namespace Crosshair10
 
         private OverlayWindow _overlay;
 
+        private void ApplyCurrentCrosshairSettings()
+        {
+            if (_overlay == null)
+                return; // overlay isn't open, nothing to update
+
+            double size = SizeSlider.Value;
+            double thickness = ThicknessSlider.Value;
+            double gap = GapSlider.Value;
+
+            Color color = Colors.Red;
+
+            if (ColorCombo.SelectedItem is ComboBoxItem item)
+            {
+                var name = (string)item.Tag;
+                color = (Color)ColorConverter.ConvertFromString(name);
+            }
+
+            _overlay.UpdateCrosshair(size, thickness, gap, color);
+        }
+
+        // called whenever any slider or color changes
+        private void CrosshairSettingsChanged(object sender, RoutedEventArgs e)
+        {
+            ApplyCurrentCrosshairSettings();
+        }
+
         private void ShowOverlay_Click(object sender, RoutedEventArgs e)
         {
             if (_overlay == null)
@@ -50,6 +79,9 @@ namespace Crosshair10
                 _overlay = new OverlayWindow();
                 _overlay.Closed += (_, __) => _overlay = null;
                 _overlay.Show();
+
+                // apply current settings when overlay opens
+                ApplyCurrentCrosshairSettings();
             }
             else
             {
@@ -57,7 +89,8 @@ namespace Crosshair10
             }
         }
 
+
     }
 
- 
+
 }

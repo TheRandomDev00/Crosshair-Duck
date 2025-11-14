@@ -2,24 +2,16 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         WindowStyle="None"
-        ResizeMode="NoResize"
         AllowsTransparency="True"
         Background="Transparent"
         Topmost="True"
-        ShowInTaskbar="False"
-        WindowStartupLocation="CenterScreen">
+        ShowInTaskbar="False">
 
-    <!-- Transparent window, only the crosshair is visible -->
-    <Grid>
-
-        <!-- Simple crosshair -->
-        <Rectangle HorizontalAlignment="Center"
-                   Width="30" Height="2"
-                   Fill="Red"/>
-
-        <Rectangle VerticalAlignment="Center"
-                   Width="2" Height="30"
-                   Fill="Red"/>
-
-    </Grid>
+    <!-- Fullscreen drawing area -->
+    <Canvas x:Name="CrosshairCanvas" Background="Transparent">
+        <Rectangle x:Name="LineLeft" />
+        <Rectangle x:Name="LineRight" />
+        <Rectangle x:Name="LineTop" />
+        <Rectangle x:Name="LineBottom" />
+    </Canvas>
 </Window>
