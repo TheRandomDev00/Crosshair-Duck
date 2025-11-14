@@ -36,7 +36,7 @@
             ValueChanged="CrosshairSettingsChanged"/>
 
                 <TextBlock Text="Thickness" Foreground="DarkOrange" Margin="0,10,0,0"/>
-                <Slider x:Name="ThicknessSlider" Background="DarkOrange"
+                <Slider x:Name="ThicknessSlider" 
             Minimum="1"
             Maximum="30"
             Value="2"
@@ -47,6 +47,23 @@
         Minimum="0"
         Maximum="40"
         Value="5"
+        ValueChanged="CrosshairSettingsChanged"/>
+
+                <CheckBox x:Name="OutlineEnabledCheckBox"
+          Content="Enable black outline"
+          IsChecked="True"
+          Foreground="DarkOrange"
+          Margin="0,4,0,0"
+          Checked="CrosshairSettingsChanged"
+          Unchecked="CrosshairSettingsChanged"/>
+
+                <!-- ✅ Outline thickness -->
+                <TextBlock Text="Outline Thickness" Foreground="DarkOrange" Margin="0,10,0,0"/>
+                <Slider x:Name="OutlineThicknessSlider"
+        Minimum="1"
+        Maximum="10"
+        Value="2"
+        IsEnabled="{Binding IsChecked, ElementName=OutlineEnabledCheckBox}"
         ValueChanged="CrosshairSettingsChanged"/>
 
                 <TextBlock Text="Color" Foreground="DarkOrange" Margin="0,10,0,0"/>

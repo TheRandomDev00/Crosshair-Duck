@@ -11,10 +11,11 @@ namespace Crosshair10
     public partial class OverlayWindow : Window
     {
         // remember last settings (used if window resizes)
-        private double _lastSize = 60;
-        private double _lastThickness = 2;
-        private double _lastGap = 5;
-        private Color _lastColor = Colors.Red;
+        private double _lastSize;
+        private double _lastThickness;
+        private double _lastGap;
+        private double _lastOutlineThickness;   // ✅ new
+        private Color _lastColor;
 
         public OverlayWindow()
         {
@@ -51,11 +52,12 @@ namespace Crosshair10
         static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
 
         // 🔹 called from MainWindow whenever user changes settings
-        public void UpdateCrosshair(double size, double thickness, double gap, Color color)
+        public void UpdateCrosshair(double size, double thickness, double gap, double outlineThickness, Color color)
         {
             _lastSize = size;
             _lastThickness = thickness;
             _lastGap = gap;
+            _lastOutlineThickness = outlineThickness;
             _lastColor = color;
 
             RedrawCrosshair();
@@ -69,35 +71,85 @@ namespace Crosshair10
             double centerX = CrosshairCanvas.ActualWidth / 2;
             double centerY = CrosshairCanvas.ActualHeight / 2;
 
-            var brush = new SolidColorBrush(_lastColor);
+            var innerBrush = new SolidColorBrush(_lastColor);
+            var outlineBrush = new SolidColorBrush(Colors.Black);
+
+            bool outlineOn = _lastOutlineThickness > 0.1;
+
+            // ===== OUTLINE ARMS (slightly bigger rectangles under the color) =====
+            if (outlineOn)
+            {
+                // LEFT outline
+                OutlineLeft.Width = _lastSize + 2 * _lastOutlineThickness;
+                OutlineLeft.Height = _lastThickness + 2 * _lastOutlineThickness;
+                OutlineLeft.Fill = outlineBrush;
+                Canvas.SetLeft(OutlineLeft, centerX - _lastGap - _lastSize - _lastOutlineThickness);
+                Canvas.SetTop(OutlineLeft, centerY - (_lastThickness / 2) - _lastOutlineThickness);
+
+                // RIGHT outline
+                OutlineRight.Width = _lastSize + 2 * _lastOutlineThickness;
+                OutlineRight.Height = _lastThickness + 2 * _lastOutlineThickness;
+                OutlineRight.Fill = outlineBrush;
+                Canvas.SetLeft(OutlineRight, centerX + _lastGap - _lastOutlineThickness);
+                Canvas.SetTop(OutlineRight, centerY - (_lastThickness / 2) - _lastOutlineThickness);
+
+                // TOP outline
+                OutlineTop.Width = _lastThickness + 2 * _lastOutlineThickness;
+                OutlineTop.Height = _lastSize + 2 * _lastOutlineThickness;
+                OutlineTop.Fill = outlineBrush;
+                Canvas.SetLeft(OutlineTop, centerX - (_lastThickness / 2) - _lastOutlineThickness);
+                Canvas.SetTop(OutlineTop, centerY - _lastGap - _lastSize - _lastOutlineThickness);
+
+                // BOTTOM outline
+                OutlineBottom.Width = _lastThickness + 2 * _lastOutlineThickness;
+                OutlineBottom.Height = _lastSize + 2 * _lastOutlineThickness;
+                OutlineBottom.Fill = outlineBrush;
+                Canvas.SetLeft(OutlineBottom, centerX - (_lastThickness / 2) - _lastOutlineThickness);
+                Canvas.SetTop(OutlineBottom, centerY + _lastGap - _lastOutlineThickness);
+
+                OutlineLeft.Visibility = Visibility.Visible;
+                OutlineRight.Visibility = Visibility.Visible;
+                OutlineTop.Visibility = Visibility.Visible;
+                OutlineBottom.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                OutlineLeft.Visibility = Visibility.Collapsed;
+                OutlineRight.Visibility = Visibility.Collapsed;
+                OutlineTop.Visibility = Visibility.Collapsed;
+                OutlineBottom.Visibility = Visibility.Collapsed;
+            }
+
+            // ===== INNER COLORED ARMS (your original code) =====
 
             // LEFT line
             LineLeft.Width = _lastSize;
             LineLeft.Height = _lastThickness;
-            LineLeft.Fill = brush;
+            LineLeft.Fill = innerBrush;
             Canvas.SetLeft(LineLeft, centerX - _lastGap - _lastSize);
             Canvas.SetTop(LineLeft, centerY - _lastThickness / 2);
 
             // RIGHT line
             LineRight.Width = _lastSize;
             LineRight.Height = _lastThickness;
-            LineRight.Fill = brush;
+            LineRight.Fill = innerBrush;
             Canvas.SetLeft(LineRight, centerX + _lastGap);
             Canvas.SetTop(LineRight, centerY - _lastThickness / 2);
 
             // TOP line
             LineTop.Width = _lastThickness;
             LineTop.Height = _lastSize;
-            LineTop.Fill = brush;
+            LineTop.Fill = innerBrush;
             Canvas.SetLeft(LineTop, centerX - _lastThickness / 2);
             Canvas.SetTop(LineTop, centerY - _lastGap - _lastSize);
 
             // BOTTOM line
             LineBottom.Width = _lastThickness;
             LineBottom.Height = _lastSize;
-            LineBottom.Fill = brush;
+            LineBottom.Fill = innerBrush;
             Canvas.SetLeft(LineBottom, centerX - _lastThickness / 2);
             Canvas.SetTop(LineBottom, centerY + _lastGap);
         }
+
     }
 }

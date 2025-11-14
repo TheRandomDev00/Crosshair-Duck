@@ -9,6 +9,13 @@
 
     <!-- Fullscreen drawing area -->
     <Canvas x:Name="CrosshairCanvas" Background="Transparent">
+        <!-- OUTLINE ARMS -->
+        <Rectangle x:Name="OutlineLeft" />
+        <Rectangle x:Name="OutlineRight" />
+        <Rectangle x:Name="OutlineTop" />
+        <Rectangle x:Name="OutlineBottom" />
+
+        <!-- INNER ARMS -->
         <Rectangle x:Name="LineLeft" />
         <Rectangle x:Name="LineRight" />
         <Rectangle x:Name="LineTop" />

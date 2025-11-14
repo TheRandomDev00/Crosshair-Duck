@@ -55,6 +55,12 @@ namespace Crosshair10
             double thickness = ThicknessSlider.Value;
             double gap = GapSlider.Value;
 
+            // if outline is off, send 0 thickness
+            double outlineThickness =
+                (OutlineEnabledCheckBox?.IsChecked == true)
+                    ? OutlineThicknessSlider.Value
+                    : 0;
+
             Color color = Colors.Red;
 
             if (ColorCombo.SelectedItem is ComboBoxItem item)
@@ -63,7 +69,7 @@ namespace Crosshair10
                 color = (Color)ColorConverter.ConvertFromString(name);
             }
 
-            _overlay.UpdateCrosshair(size, thickness, gap, color);
+            _overlay.UpdateCrosshair(size, thickness, gap, outlineThickness, color);
         }
 
         // called whenever any slider or color changes
