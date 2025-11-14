@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using System;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
+using System.Security.Cryptography.X509Certificates;
 
 
 namespace Crosshair10
@@ -28,8 +29,17 @@ namespace Crosshair10
             Height = SystemParameters.PrimaryScreenHeight;
             Left = 0;
             Top = 0;
+            CenterWindowOnScreen();
         }
-
+        private void CenterWindowOnScreen()
+        {
+            double screenWidth = SystemParameters.PrimaryScreenWidth;
+            double screenHeight = SystemParameters.PrimaryScreenHeight;
+            double windowWidth = Width;
+            double windowHeight = Height;
+            this.Left = (screenWidth / 2) - (windowWidth / 2);
+            this.Top = (screenHeight / 2) - (windowHeight / 2);
+        }
         protected override void OnSourceInitialized(EventArgs e)
         {
             base.OnSourceInitialized(e);

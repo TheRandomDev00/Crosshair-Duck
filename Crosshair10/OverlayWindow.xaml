@@ -6,7 +6,8 @@
         AllowsTransparency="True"
         Background="Transparent"
         Topmost="True"
-        ShowInTaskbar="False">
+        ShowInTaskbar="False"
+        WindowStartupLocation="CenterScreen">
 
     <!-- Transparent window, only the crosshair is visible -->
     <Grid>
