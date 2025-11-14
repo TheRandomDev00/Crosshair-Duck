@@ -27,7 +27,8 @@
 
             <Button x:Name="BtnMinimise" Margin="20,-6,41,558" Grid.Column="2" Click="BtnMinimise_Click" Background="DarkOrange" FontSize="20" Content="-"/>
 
-            <Button x:Name="BtnShowoverlay" Grid.Column="1" Margin="118,234,117,270" Click="ShowOverlay_Click"/>
+            <Button x:Name="BtnShowoverlay" Content="Toggle crosshair" Grid.Column="1" Margin="89,230,89,274" Click="ShowOverlay_Click"/>
+
 
             <TextBlock Text="Crosshair Duck"
            VerticalAlignment="Top"
