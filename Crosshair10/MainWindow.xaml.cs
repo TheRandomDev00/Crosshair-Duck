@@ -38,8 +38,26 @@ namespace Crosshair10
 
         private void BtnMinimise_Click(object sender, RoutedEventArgs e)
         {
-            WindowState = WindowState.Minimized; // minimise the window
+            WindowState = WindowState.Minimized; //  the window
+        }
+
+        private OverlayWindow _overlay;
+
+        private void ShowOverlay_Click(object sender, RoutedEventArgs e)
+        {
+            if (_overlay == null)
+            {
+                _overlay = new OverlayWindow();
+                _overlay.Closed += (_, __) => _overlay = null;
+                _overlay.Show();
+            }
+            else
+            {
+                _overlay.Close();
+            }
         }
 
     }
+
+ 
 }

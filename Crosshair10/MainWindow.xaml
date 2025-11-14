@@ -23,19 +23,18 @@
             Grid.Row="0"
             MouseDown="HeaderBar_MouseDown" Margin="-6,-11,-6,553" Grid.ColumnSpan="3"/>
 
-            <Button Name="BtnClose" Margin="61,-6,0,558" Grid.Column="2" Click="BtnClose_Click" Background="DarkOrange">
-                X
-            </Button>
+            <Button x:Name="BtnClose" Margin="61,-6,0,558" Grid.Column="2" Click="BtnClose_Click" Background="DarkOrange" Content="X"/>
 
-            <Button Name="BtnMinimise" Margin="20,-6,41,558" Grid.Column="2" Click="BtnMinimise_Click" Background="DarkOrange" FontSize="20">
-                -
-            </Button>
+            <Button x:Name="BtnMinimise" Margin="20,-6,41,558" Grid.Column="2" Click="BtnMinimise_Click" Background="DarkOrange" FontSize="20" Content="-"/>
+
+            <Button x:Name="BtnShowoverlay" Grid.Column="1" Margin="118,234,117,270" Click="ShowOverlay_Click"/>
 
             <TextBlock Text="Crosshair Duck"
            VerticalAlignment="Top"
            HorizontalAlignment="Left"
            Foreground="White"
            FontSize="22" Grid.ColumnSpan="2" Height="32" Width="147" Margin="0,-6,0,0"/>
+            <Image Source="/Media/Psyduck1.png" Grid.ColumnSpan="2" Margin="229,365,-43,-31" Grid.Column="1"/>
         </Grid>
 
 

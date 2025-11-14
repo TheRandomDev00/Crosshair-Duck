@@ -1,0 +1,24 @@
+﻿<Window x:Class="Crosshair10.OverlayWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        AllowsTransparency="True"
+        Background="Transparent"
+        Topmost="True"
+        ShowInTaskbar="False">
+
+    <!-- Transparent window, only the crosshair is visible -->
+    <Grid>
+
+        <!-- Simple crosshair -->
+        <Rectangle HorizontalAlignment="Center"
+                   Width="30" Height="2"
+                   Fill="Red"/>
+
+        <Rectangle VerticalAlignment="Center"
+                   Width="2" Height="30"
+                   Fill="Red"/>
+
+    </Grid>
+</Window>
