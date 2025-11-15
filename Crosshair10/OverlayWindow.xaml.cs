@@ -10,11 +10,11 @@ namespace Crosshair10
 {
     public partial class OverlayWindow : Window
     {
-        // remember last settings (used if window resizes)
+        // remember last settings 
         private double _lastSize;
         private double _lastThickness;
         private double _lastGap;
-        private double _lastOutlineThickness;   // ✅ new
+        private double _lastOutlineThickness;  
         private Color _lastColor;
 
         public OverlayWindow()
@@ -34,7 +34,7 @@ namespace Crosshair10
         {
             base.OnSourceInitialized(e);
 
-            // your click-through style (if you already added it)
+            // to make it click through
             var hwnd = new WindowInteropHelper(this).Handle;
             int exStyle = GetWindowLong(hwnd, GWL_EXSTYLE);
             exStyle |= WS_EX_TRANSPARENT | WS_EX_TOOLWINDOW;
@@ -51,7 +51,7 @@ namespace Crosshair10
         [DllImport("user32.dll")]
         static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
 
-        // 🔹 called from MainWindow whenever user changes settings
+        // called from MainWindow whenever user changes settings
         public void UpdateCrosshair(double size, double thickness, double gap, double outlineThickness, Color color)
         {
             _lastSize = size;
@@ -76,7 +76,7 @@ namespace Crosshair10
 
             bool outlineOn = _lastOutlineThickness > 0.1;
 
-            // ===== OUTLINE ARMS (slightly bigger rectangles under the color) =====
+            // ===== OUTLINE ARMS =====
             if (outlineOn)
             {
                 // LEFT outline
@@ -120,7 +120,6 @@ namespace Crosshair10
                 OutlineBottom.Visibility = Visibility.Collapsed;
             }
 
-            // ===== INNER COLORED ARMS (your original code) =====
 
             // LEFT line
             LineLeft.Width = _lastSize;
