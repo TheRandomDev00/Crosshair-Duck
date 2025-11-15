@@ -11,9 +11,19 @@ Clone Repostory In Visual Studio:
 https://github.com/TheRandomDev00/Crosshair-Duck.git
 ```
 
-## Usage example
 
-When you need a crosshair in a game that dosnt have one by default
+Download Portable Executable from releases
+
+```sh
+https://github.com/TheRandomDev00/Crosshair-Duck.git](https://github.com/TheRandomDev00/Crosshair-Duck/releases/tag/Build_1.0
+```
+
+
+## Usage example if you want the portable 
+
+Download the zip file from releases and run the .exe
+
+<img width="622" height="180" alt="image" src="https://github.com/user-attachments/assets/1ae50b17-8a49-4035-afd0-ae4a42875a99" />
 
 
 
