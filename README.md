@@ -15,7 +15,7 @@ https://github.com/TheRandomDev00/Crosshair-Duck.git
 Download Portable Executable from releases
 
 ```sh
-https://github.com/TheRandomDev00/Crosshair-Duck.git](https://github.com/TheRandomDev00/Crosshair-Duck/releases/tag/Build_1.0
+https://github.com/TheRandomDev00/Crosshair-Duck/releases/tag/Build_1.0
 ```
 
 
